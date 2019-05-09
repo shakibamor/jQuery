@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jQuery DOM Manipulation</title>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <style>
+    .myClass {
+        color:blue;
+        background:grey;
+    }
+</style>
+    </head>
+</head>
+<body>
+	<header>
+		<h1>jQuery DOM Manipulation</h1>
+	</header>
+	<div>
+	<button id="btn1">Button 1</button>
+	<p class="para1">This is paragraph one</p>
+	<p class="para2">This is paragraph two</p>
+	
+	<input type="text" id="newItem">
+	<ul id="list">
+		<li>List Item 1</li>
+		<li>List Item 2</li>
+		<li>List Item 3</li>
+		<li>List Item 4</li>
+    </ul>
+    <div id="myDiv"></div>
+	<a href="http://google.com">Google</a>
+	<ul id="users"></ul>
+	</div>
+
+	<script>
+		
+        $(document).ready(function(){
+
+            //multiple css properties
+			$('p.para1').css({color:'red',background:'#ccc'});
+
+            //use class for styling
+			$('p.para2').addClass('myClass');
+			//$('p.para2').removeClass('myClass');
+
+            //toggle class for paragraph2
+			$('#btn1').click(function(){
+				$('p.para2').toggleClass('myClass');
+			});
+			
+            //add (Set) content to element
+			//$('#myDiv').text('Hello there');
+
+            //.html we can add html tags in there
+			$('#myDiv').html('<h3>Hello there</h3>');
+
+            //Get content
+			console.log($('#myDiv').text());
+
+            //add content by append and prepend
+			 $('ul#list').append('<li>Append List Item</li>');
+			 $('ul#list').prepend('<li>Prepend List Item</li>');
+
+             //get one element and append to another element
+			 $('.para1').appendTo('.para2');
+			
+			 $('ul#list').before('<h4>This is</h4>');
+			 $('ul#list').after('<h4>Awsome</h4>');
+
+            //takes all inner elements out. if we inspect still we see ul element
+			 //$('ul').empty();
+
+             //remove the whole element
+			// $('ul').detach();
+
+            //add attribute - open link in new window
+			 $('a').attr('target', '_blank');
+
+             //get attribute
+			 console.log($('a').attr('href'));
+
+             //remove attribute
+			// $('a').removeAttr('target');
+			
+            //wrap specific element in another element
+			$('p').wrap('<h3>');
+
+
+		//type something click enter and append to the list
+			$('#newItem').keyup(function(e){
+
+                //get the key code
+				var code = e.which;
+
+                //13 is Enter key code
+				if(code == 13){
+					e.preventDefault();
+					$('ul').append('<li>'+e.target.value+'</li>');
+				}
+			});
+			
+			var myArr = ['Mamad', 'Shakiba', 'Mir', 'Taghi'];
+			$.each(myArr, function(i, val){
+				$('#users').append('<li>'+val+'</li>');
+			});
+
+			//get all the list item innerhtml
+			var newArr = $('ul#list li').toArray();
+			$.each(newArr, function(i, val){
+				console.log(val.innerHTML);
+			});
+        });
+	
+	</script>
+</body>
+</html>

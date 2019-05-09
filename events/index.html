@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>jQuery Events</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>jQuery Events</h1>
+        <div id="container">
+            <h3>Mouse Events</h3>
+            <button id="btn1">Hide</button>
+            <button id="btn2">Show</button>
+            <button id="btn3">Toggle</button>
+            <button id="btn4">DoubleClick-Toggle</button>
+            <button id="btn5">Hover</button>
+            <button id="btn6">Event Data</button>
+            <p class='p1'>click button hide to remove this text and click button show to make see the text.</p>
+        </div>
+        <div id="coordinate"></div>
+        <hr>
+		<form id="form">
+			<label>Name</label><br>
+			<input type="text" id="name" >
+			<br>
+			<label>Email</label><br>
+			<input type="text" id="email" >
+			<br>
+			<label>Gender</label><br>
+			<select id="gender">
+				<option value="male">Male</option>
+				<option value="female">Female</option>
+			</select>
+			<br>
+			<input type="submit" value="Submit">
+		</form>
+        <script>
+
+        //"click" event
+        // $('#btn1').click(function(){
+        //     alert('Button Clicked');
+        // });
+
+        //"click" event runs on method so this would give the same result.
+        // $('#btn1').on('click', function(){
+        //     alert('Button Clicked');
+        // });
+
+        //remove paragraph
+        $('#btn1').on('click', function(){
+          $('.p1').hide();
+        });
+
+        //show paragraph
+        $('#btn2').on('click', function(){
+          $('.p1').show();
+        });
+
+        //toggle paragraph
+               $('#btn3').on('click', function(){
+          $('.p1').toggle();
+        });
+
+        //double click
+        // $('#btn5').hover(function(){
+        //     $('.p1').toggle();
+        //  });
+
+         //hover is not actual event.shortend of mouse enter and mouse leave
+         $('#btn5').on('mouseenter', function(){
+          $('.p1').toggle();
+        });
+        $('#btn5').on('mouseleave', function(){
+          $('.p1').toggle();
+        });
+
+        //get event data
+        $('#btn6').click(function(e){
+            //alert(e.currentTarget.id);
+            alert(e.currentTarget.innerHTML);
+        });
+
+        //get coordinates of the page
+        $(document).on('mousemove', function(e){
+            $('#coordinate').html('coordinates is: Y=' + e.clientY + 'X=' + e.clientX);
+        });
+
+        //form events
+        //focus event when you click ion input 
+      $('input').focus(function(){
+        $(this).css('background', 'grey')
+      });
+
+      //blur is opposite of focus
+      $('input').blur(function(){
+        $(this).css('background', 'white')
+      });
+
+      //keyup event
+      $('input').keyup(function(e){
+        console.log(e.target.value)
+      });
+
+      //change event for select element
+      $('select#gender').change(function(e){
+        alert(e.target.value);
+      });
+
+      //submit event
+      $('#form').submit(function(e){
+        alert('Submitted');
+        var name = $('input#name').val();
+        //to see console.log we add e preventdefault
+        e.preventDefault();
+
+        console.log('name is:' + name)
+      });
+
+        </script>
+    </header>    
+</body>
+</html>

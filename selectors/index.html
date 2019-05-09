@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>jQuery selectors</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>jQuery selectors</h1>
+        <div id="container">
+            <h1 id="heading1">Heading One </h1>
+                <p>This is paragraph1. This is <span>jQuery selectors practice</span></p>
+            <h1 class="heading2">Heading Two</h1>
+                <p>This is paragraph Two</p>
+
+            <ul id="list">
+                <li>Item 1</li>
+                <li>Item 2</li>
+                <li>Item 3</li>
+                <li>Item 4</li>
+            </ul>    
+            <input type="button" value="Button">
+            <input type="submit" value="Submit">
+            <input type="text">
+            <a href="http://google.com">Google</a>
+            <a href="http://yahoo.com">yahoo</a>
+        </div>
+        <script>
+        // to hide all the h1 elements
+        //$('h1').hide();
+
+        // to hide an h1 element with specific id
+        //$('h1#heading1').hide();
+
+        //to hide element with specific class
+        //$('h1.heading2').hide();
+
+        //change css of span inside paragraph
+        $('p span').css('color', 'red');
+
+        //change css of first item in a list
+        $('ul#list li:first').css('color', 'red');
+
+           //change css of last item in a list
+        $('ul#list li:last').css('color', 'green');
+
+          //change css of even items in a list
+        $('ul#list li:even').css('background-color', 'yellow');
+
+        //change css (remove bullet) of every second item using nth child selector 
+        $('ul#list li:nth-child(2n)').css('list-style', 'none');
+
+        //hide all button types
+        //$(':button').hide();
+
+        //use attributes as selector
+        $('[href]').css('color', 'red');
+
+        //target value of the attribute
+        $('a[href="http://yahoo.com"]').css('color', 'green');
+     
+
+        </script>
+    </header>    
+</body>
+</html>
